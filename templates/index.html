@@ -1,0 +1,113 @@
+<!-- templates/index.html -->
+
+<head>
+  <title>Weather App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+</head>
+
+{% block content %}
+
+  <h1 class="text-center">CST 205 Weather App</h1>
+
+  <form action = "/" method = "post" class="text-center justify-content-center">
+    <label for="zip_code">Get Weather For:</label>
+    <input type="number" name="zip_code" placeholder="Enter Zip Code" id="zip_code" required>
+    <button type="submit" id="submit">Search</button>
+  </form>
+
+  {% if location['success'] %}
+    <h2 class="text-center">
+      Weather for {{location['city']}}, {{location['state']}}
+    </h2>
+
+    <br><hr>
+
+    {% if 'ip_address' in location%}
+      <p class="text-center">
+        Your External IP Address: {{location['ip_address']}}
+      </p>
+    {% endif %}
+    <div class="container">
+      <h2><i>Current Weather:</i></h2>
+
+      <ul class="list-group">
+        <li class = "list-group-item">
+          <div>
+            <img src="{{current_forcast['weather'][0]['icon']}}">
+          </div>
+          <p>
+            <b>Weather as of:</b> {{current_forcast['dt']}} <br>
+            <b>Description:</b> {{current_forcast['weather'][0]['description']}} <br>
+            <b>Sunrise:</b> {{current_forcast['sunrise']}}, <b>Sunset:</b> {{current_forcast['sunset']}} <br>
+            <b>Clouds:</b> {{current_forcast['clouds']}}%, <b>Dew Point:</b> {{current_forcast['dew_point']}} <br>
+            <b>Humidity:</b> {{current_forcast['humidity']}}%, <b>Pressure:</b> {{current_forcast['pressure']}} hPa <br><br>
+            <b>Feels Like:</b> {{current_forcast['feels_like']}} <br>
+            <b>Temperature:</b> {{current_forcast['temp']}} <br>
+            <b>UVI:</b> {{current_forcast['uvi']}}, <b>Wind Speed:</b> {{current_forcast['wind_speed']}} meter/sec <br>
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <h2><i>Daily Forcast:</i></h2>
+
+      <ul class="list-group">
+        {% for day in daily_forcast %}
+          <li class = "list-group-item">
+            <div>
+              <img src="{{day['weather'][0]['icon']}}">
+            </div>
+            <p>
+              <b>Weather for:</b> {{day['dt']}} <br>
+              <b>Description:</b> {{day['weather'][0]['description']}} <br>
+              <b>Sunrise:</b> {{day['sunrise']}}, <b>Sunset:</b> {{day['sunset']}} <br>
+              <b>Clouds:</b> {{day['clouds']}}, <b>Dew Point:</b> {{day['dew_point']}} <br>
+              <b>Humidity:</b> {{day['humidity']}}, <b>Pressure:</b> {{day['pressure']}} <br><br>
+              <b>Temperatures for <i>'Feels Like':</i></b> <br>
+              <b>Day:</b> {{day['feels_like']['day']}} <br>
+              <b>Evening:</b> {{day['feels_like']['eve']}} <br>
+              <b>Morning:</b> {{day['feels_like']['morn']}} <br>
+              <b>Night:</b> {{day['feels_like']['night']}} <br><br>
+              <b>Temperatures for <i>'Temperature':</i></b> <br>
+              <b>Day:</b> {{day['temp']['day']}} <br>
+              <b>Evening:</b> {{day['temp']['eve']}} <br>
+              <b>Max:</b> {{day['temp']['max']}} <br>
+              <b>Min:</b> {{day['temp']['min']}} <br>
+              <b>Morning:</b> {{day['temp']['morn']}} <br>
+              <b>Night:</b> {{day['temp']['night']}} <br><br>
+              <b>UVI:</b> {{day['uvi']}}, <b>Wind Speed:</b> {{day['wind_speed']}} <br>
+            </p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% else %}
+    <h2 class="text-center">
+      An Error Occured
+    </h2>
+    <p class="text-center">
+      Your External IP Address Given: {{location['ip_address']}}
+    </p>  
+  {% endif %}
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+{% endblock %}
+
+<footer class="text-center">
+  <p>CST 205 2020© Joseph Villegas, Nayeli De Jesus, William Sampson, Waleed Shaikh, Mark Trantham</p>
+  <a href="{{ url_for('about') }}">about</a> <br>
+  <a href="https://github.com/WilliamSampson44444/cst205_weather_project" aria-label="View source on GitHub">GitHub</a>
+</footer>            
