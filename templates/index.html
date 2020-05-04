@@ -138,19 +138,20 @@
 
 
 
-        <b class = "Stats"><i>Temperature:</i></b> <br>
+        <b class = "Stats"><i>Temperature: (Feels Like)</i></b> <br>
         <b class = "Stats">Max:</b> {{day['temp']['max']['fahrenheit']}}°F <br>
         <b class = "Stats">Min:</b> {{day['temp']['min']['fahrenheit']}}°F <br>
-        <b class = "Stats">Morning:</b> {{day['temp']['morn']['fahrenheit']}}°F <br>
-        <b class = "Stats">Day:</b> {{day['temp']['day']['fahrenheit']}}°F <br>
-        <b class = "Stats">Night:</b> {{day['temp']['night']['fahrenheit']}}°F <br><br>
+        <b class = "Stats">Morning:</b> {{day['temp']['morn']['fahrenheit']}}°F ({{day['feels_like']['morn']['fahrenheit']}}°F)<br>
+        <b class = "Stats">Day:</b> {{day['temp']['day']['fahrenheit']}}°F ({{day['feels_like']['day']['fahrenheit']}}°F)<br>
+        <b class= "Stats">Evening:</b> {{day['temp']['eve']['fahrenheit']}}°F ({{day['feels_like']['eve']['fahrenheit']}}°F) <br>
+        <b class = "Stats">Night:</b> {{day['temp']['night']['fahrenheit']}}°F ({{day['feels_like']['night']['fahrenheit']}}°F)<br><br>
         
-        <b class="Stats"><i>Feels Like:</i></b> <br>
+        <!--<b class="Stats"><i>Feels Like:</i></b> <br>
         <b class="Stats">Morning:</b> {{day['feels_like']['morn']['fahrenheit']}}°F <br>
         <b class="Stats">Day:</b> {{day['feels_like']['day']['fahrenheit']}}°F <br>
         <b class="Stats">Evening:</b> {{day['feels_like']['eve']['fahrenheit']}}°F <br>
         <b class="Stats">Night:</b> {{day['feels_like']['night']['fahrenheit']}}°F <br><br>
-
+        -->
 
 
       </p>
