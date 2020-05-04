@@ -91,8 +91,7 @@
         <b class = "CurStats">Humidity:</b> {{current_forcast['humidity']}}%, <b class = "CurStats">Pressure:</b> {{current_forcast['pressure']}} hPa <br><br>
 
 
-        <b class = "CurStats">Temperature:</b> {{current_forcast['temp']['fahrenheit']}}°F 
-        <b class = "CurStats">Feels Like:</b> {{current_forcast['feels_like']['fahrenheit']}}°F <br>
+        <b class = "CurStats">Temperature (Feels Like):</b> {{current_forcast['temp']['fahrenheit']}}°F ({{current_forcast['feels_like']['fahrenheit']}}°F)<br>
         <b class = "CurStats">UVI:</b> {{current_forcast['uvi']}} <b class = "CurStats">Wind Speed:</b> {{current_forcast['wind_speed']}} meters/sec <br>
       </p>
     </li>
