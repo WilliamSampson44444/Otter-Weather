@@ -93,15 +93,14 @@
       <p class ="CurrentDataItemsText">
         <b class = "CurStats">Weather as of:</b> {{current_forcast['dt']}} <br>
         <b class = "CurStats">Description:</b> {{current_forcast['weather'][0]['description']}} <br>
-        <b class = "CurStats">Sunrise:</b> {{current_forcast['sunrise']}},<b class = "CurStats">Sunset:</b> {{current_forcast['sunset']}} <br>
-        <b class = "CurStats">Clouds:</b> {{current_forcast['clouds']}}%, <b class = "CurStats">Dew Point:</b> {{current_forcast['dew_point']}} <br>
+        <b class = "CurStats">Sunrise:</b> {{current_forcast['sunrise']}}<br><b class = "CurStats">Sunset:</b> {{current_forcast['sunset']}} <br>
+        <b class = "CurStats">Clouds:</b> {{current_forcast['clouds']}}%, <b class = "CurStats">Dew Point:</b> {{current_forcast['dew_point']['fahrenheit']}}°F <br>
         <b class = "CurStats">Humidity:</b> {{current_forcast['humidity']}}%, <b class = "CurStats">Pressure:</b> {{current_forcast['pressure']}} hPa <br><br>
 
 
-
-        <b class = "CurStats">Feels Like:</b> {{current_forcast['feels_like']}} <br>
-        <b class = "CurStats">Temperature:</b> {{current_forcast['temp']}} <br>
-        <b class = "CurStats">UVI:</b> {{current_forcast['uvi']}}<br> <b class = "CurStats">Wind Speed:</b> {{current_forcast['wind_speed']}} meters/sec <br>
+        <b class = "CurStats">Temperature:</b> {{current_forcast['temp']['fahrenheit']}}°F 
+        <b class = "CurStats">Feels Like:</b> {{current_forcast['feels_like']['fahrenheit']}}°F <br>
+        <b class = "CurStats">UVI:</b> {{current_forcast['uvi']}} <b class = "CurStats">Wind Speed:</b> {{current_forcast['wind_speed']}} meters/sec <br>
       </p>
     </li>
   </ul>
@@ -140,17 +139,17 @@
 
 
         <b class = "Stats"><i>Temperature:</i></b> <br>
-        <b class = "Stats">Max:</b> {{day['temp']['max']}} <br>
-        <b class = "Stats">Min:</b> {{day['temp']['min']}} <br>
-        <b class = "Stats">Morning:</b> {{day['temp']['morn']}} <br>
-        <b class = "Stats">Day:</b> {{day['temp']['day']}} <br>
-        <b class = "Stats">Night:</b> {{day['temp']['night']}} <br><br>
+        <b class = "Stats">Max:</b> {{day['temp']['max']['fahrenheit']}}°F <br>
+        <b class = "Stats">Min:</b> {{day['temp']['min']['fahrenheit']}}°F <br>
+        <b class = "Stats">Morning:</b> {{day['temp']['morn']['fahrenheit']}}°F <br>
+        <b class = "Stats">Day:</b> {{day['temp']['day']['fahrenheit']}}°F <br>
+        <b class = "Stats">Night:</b> {{day['temp']['night']['fahrenheit']}}°F <br><br>
         
         <b class="Stats"><i>Feels Like:</i></b> <br>
-        <b class="Stats">Morning:</b> {{day['feels_like']['morn']}} <br>
-        <b class="Stats">Day:</b> {{day['feels_like']['day']}} <br>
-        <b class="Stats">Evening:</b> {{day['feels_like']['eve']}} <br>
-        <b class="Stats">Night:</b> {{day['feels_like']['night']}} <br><br>
+        <b class="Stats">Morning:</b> {{day['feels_like']['morn']['fahrenheit']}}°F <br>
+        <b class="Stats">Day:</b> {{day['feels_like']['day']['fahrenheit']}}°F <br>
+        <b class="Stats">Evening:</b> {{day['feels_like']['eve']['fahrenheit']}}°F <br>
+        <b class="Stats">Night:</b> {{day['feels_like']['night']['fahrenheit']}}°F <br><br>
 
 
 
