@@ -24,7 +24,7 @@
 {% block content %}
     <!-- First title at the top of page... class = Title1  /for css-->
 <div class = "TopBody">
-<h1 class="Title1">CST 205 Weather App</h1>
+<h1 class="Title1">Otter Weather</h1>
 
 
 
@@ -48,10 +48,8 @@
 </h2>
     <!-- End of weather for-->
 
-
-<br>
 </div>
-<hr class = "TopLineDivide">
+
     <!--------------------------------------- End of TOP side------------------------------------------------------------------->
 
 
@@ -69,9 +67,9 @@
     <!-- Start of display your external IP-->
     {% if 'ip_address' in location%}
     <!-- Your external ip is... class ExternalIP /for css-->
-    <p class="ExternalIP">
+    <!--<p class="ExternalIP">
       Your External IP Address: {{location['ip_address']}}
-    </p>
+    </p>-->
     <!-- End of display your external IP-->
     {% endif %}
 
