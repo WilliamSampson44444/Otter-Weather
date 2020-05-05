@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel = "stylesheet" type = "text/css" href = static/styleAbout.css>
 
-    <title>About</title>
+    <title>Otter Weather</title>
+    <link rel="title icon" type="image/png" href="{{ url_for('static', filename='Images/cloud.ico') }}"/>
 </head>
 
 
@@ -104,6 +105,7 @@
         aria-label="View source on GitHub">GitHub</a>
     <p class="DevNames">CST 205 2020© Joseph Villegas, Nayeli De Jesus, William Sampson, Waleed Shaikh, Mark Trantham
     </p>
+    <img src="{{ url_for('static',filename='Images/CSUMB-Logo.png') }}" width="100px" height="100px">
 </footer>
 
 </html>
