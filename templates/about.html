@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel = "stylesheet" type = "text/css" href = static/styleAbout.css>
 
-    <title>About</title>
+    <title>Otter Weather</title>
+    <link rel="title icon" type="image/png" href="{{ url_for('static', filename='Images/cloud.ico') }}"/>
 </head>
 
 
@@ -29,7 +30,7 @@
             Joseph Villegas
         </h2>
     <div>
-        <img src = "static/Images/JosephImg.png" class = "Images">
+        <img src = "static/Images/JosephImg.jpg" class = "Images">
         <span class="AboutText">
             Placeholder
         </span>
@@ -99,11 +100,12 @@
 
 <footer class="FooterBox">
 
-    <a class="link" href="/">Home</a> <br>
+    <a class="link" href="/">Home <i class="fa fa-home" aria-hidden="true"></i></a> <br>
     <a class="link" href="https://github.com/WilliamSampson44444/cst205_weather_project"
-        aria-label="View source on GitHub">GitHub</a>
+        aria-label="View source on GitHub">GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
     <p class="DevNames">CST 205 2020© Joseph Villegas, Nayeli De Jesus, William Sampson, Waleed Shaikh, Mark Trantham
     </p>
+    <img src="{{ url_for('static',filename='Images/CSUMB-Logo.png') }}" width="100px" height="100px">
 </footer>
 
 </html>
