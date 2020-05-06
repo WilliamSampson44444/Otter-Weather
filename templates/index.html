@@ -231,8 +231,8 @@
     <!---------------------------------------- Start of middle Body --------------------------------------------------------->
 
     <div class="tab">
-		<button class="tablinks" id="currWeather" onclick="openCity(event, 'currentWeather')">Current</button>
-		<button class="tablinks" id="dailWeather" onclick="openCity(event, 'dailyWeather')">Daily</button>
+		<button class="tablinks" id="currWeather" onclick="show_weather(event, 'currentWeather')">Current</button>
+		<button class="tablinks" id="dailWeather" onclick="show_weather(event, 'dailyWeather')">Daily</button>
 	</div>
 
 
@@ -421,7 +421,7 @@
 	        document.getElementById("map").src = `https://maps.google.com/maps?q=${city}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
 	    }
 
-      	function openCity(evt, cityName) {
+      	function show_weather(evt, type) {
 			var i, tabcontent, tablinks;
 			tabcontent = document.getElementsByClassName("tabcontent");
 			for (i = 0; i < tabcontent.length; i++) {
@@ -431,7 +431,7 @@
 			for (i = 0; i < tablinks.length; i++) {
 				tablinks[i].className = tablinks[i].className.replace(" active", "");
 			}
-			document.getElementById(cityName).style.display = "block";
+			document.getElementById(type).style.display = "block";
 			evt.currentTarget.className += " active";
 		}
 	</script>
