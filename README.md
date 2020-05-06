@@ -1,21 +1,56 @@
-# cst205_weather_project
-
-Instruction for use as of 04/17/20
-
-Makes use of three APIs, but only two need keys
-
-Weather API, sign up at https://openweathermap.org/api for the "One Call API"
-
-Zipcode API, sign up at https://www.zipcodeapi.com for the free usage plan
-
-Assign these keys to their respective variable in configure.py for this project to work.
-
-To run this Flask application, simpy run app.py in your terminal - no need to instantiate flask variables there
-
-The back-end files will send three dictionaries, location, current_forcast, and daily_forcast to the front-end. 
-
-The index.html file simply displays all data from every dictionary, icons are also provided from the API if the 
-front-enders want to use them, to show the front-end developers how to access each element provided.
+# Otter Weather
 
 
--- Joseph
+## Prerequisites
+* Python 3
+* Any modern browser
+
+## Installation
+Clone this repository to a directory of your choice, and run the following command in a fresh Python 3 Virtual Environment:
+```
+pip install -r /path/to/requirements.txt
+```
+(With "/path/to/requirements.txt" replaced with a path to this program's requirements.txt file.)
+
+## Running
+
+#### Bash
+There are two options. In the root of the Otter Weather directory:
+* Enter `chmod +x flaskrun.sh`
+    * (Only needs to be done once) 
+* Followed by `source flaskrun.sh`
+    * This script will automatically run app.py via Flask.
+
+#### Powershell
+Enter the command `.\flaskrun.ps1` into your Powershell, and press enter.
+
+### Accesing Webpage
+In your browser, enter whatever local IP Flask has chosen for the app and press enter.
+* Default IP should be `127.0.0.1:5000`
+
+
+## Built With
+
+### Python Modules
+* Flask
+* Flask-Bootstrap
+* OpenCV
+* Pillow
+* requests
+
+### APIs
+* Google Maps: cloud.google.com/maps-platform/
+* Openweathermap: www.openweathermap.org
+* Zipcode API: www.zipcodeapi.com
+
+
+## Authors
+#### Nayeli De Jesus
+#### William Sampson
+#### Waleed Shaikh
+#### Mark Trantham
+#### Joseph Villegas
+
+
+## License
+This project is licensed under the MIT license.
