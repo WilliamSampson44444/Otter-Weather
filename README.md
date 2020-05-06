@@ -20,7 +20,13 @@ There are two options. In the root of the Otter Weather directory:
     * (Only needs to be done once) 
 * Followed by `source flaskrun.sh`
     * This script will automatically run app.py via Flask.
-
+OR
+* Run the following commands while in the root of the Otter Weather directory:
+```
+export FLASK_APP=app.py
+export FLASK_DEBUG=1
+flask run
+```
 #### Powershell
 While in the directory of the Otter Weather app, enter the command `.\flaskrun.ps1` into your Powershell, and press enter.
 
