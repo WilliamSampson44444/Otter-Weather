@@ -20,6 +20,7 @@ There are two options. In the root of the Otter Weather directory:
     * (Only needs to be done once) 
 * Followed by `source flaskrun.sh`
     * This script will automatically run app.py via Flask.
+
 OR
 * Run the following commands while in the root of the Otter Weather directory:
 ```
