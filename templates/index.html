@@ -310,242 +310,242 @@
     <!--------------------------------------- End of TOP side------------------------------------------------------------------->
 
     <!---------------------------------------- Start of middle Body --------------------------------------------------------->
+    {% if location['success'] %}
+	    <div class="tab">
+	      <button
+	        class="tablinks"
+	        id="currWeather"
+	        onclick="show_weather(event, 'currentWeather')"
+	      >
+	        Current
+	      </button>
+	      <button
+	        class="tablinks"
+	        id="dailWeather"
+	        onclick="show_weather(event, 'dailyWeather')"
+	      >
+	        Daily
+	      </button>
+	      <button
+	        class="tablinks"
+	        id="hourWeather"
+	        onclick="show_weather(event, 'hourlyWeather')"
+	      >
+	        Hourly
+	      </button>
+	    </div>
 
-    <div class="tab">
-      <button
-        class="tablinks"
-        id="currWeather"
-        onclick="show_weather(event, 'currentWeather')"
-      >
-        Current
-      </button>
-      <button
-        class="tablinks"
-        id="dailWeather"
-        onclick="show_weather(event, 'dailyWeather')"
-      >
-        Daily
-      </button>
-      <button
-        class="tablinks"
-        id="hourWeather"
-        onclick="show_weather(event, 'hourlyWeather')"
-      >
-        Hourly
-      </button>
-    </div>
+	    <!-- Start of Current Weather Box -->
+	    <!-- Current Weather/ Daily Forcast Titles... class = WeatherTitles   /for css-->
+	    <div class="CurrentWeatherBody tabcontent" id="currentWeather">
+	      <h2 class="WeatherTitles"><i>Current Weather</i></h2>
 
-    <!-- Start of Current Weather Box -->
-    <!-- Current Weather/ Daily Forcast Titles... class = WeatherTitles   /for css-->
-    <div class="CurrentWeatherBody tabcontent" id="currentWeather">
-      <h2 class="WeatherTitles"><i>Current Weather</i></h2>
+	      <ul class="CurrentDataBox">
+	        <li class="CurrentDataItems">
+	          <div>
+	            <img src="{{current_forcast['weather'][0]['icon']}}" />
+	          </div>
 
-      <ul class="CurrentDataBox">
-        <li class="CurrentDataItems">
-          <div>
-            <img src="{{current_forcast['weather'][0]['icon']}}" />
-          </div>
+	          <p class="CurrentDataItemsText">
+	            <b class="CurStats">Weather as of:</b> {{current_forcast['dt']}}
+	            <br />
+	            <b class="CurStats">Description:</b>
+	            {{current_forcast['weather'][0]['description']}} <br />
+	            <b class="CurStats">Sunrise:</b>
+	            {{current_forcast['sunrise']}}<br /><b class="CurStats">Sunset:</b>
+	            {{current_forcast['sunset']}} <br />
+	            <b class="CurStats">Clouds:</b> {{current_forcast['clouds']}}%,
+	            <b class="CurStats">Dew Point:</b>
+	            <span class="fahrenheit">
+	              {{current_forcast['dew_point']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius">
+	              {{current_forcast['dew_point']['celsius']}}°C
+	            </span>
+	            <br />
+	            <b class="CurStats">Humidity:</b> {{current_forcast['humidity']}}%,
+	            <b class="CurStats">Pressure:</b> {{current_forcast['pressure']}}
+	            hPa <br /><br />
+	            <b class="CurStats">Temperature (Feels Like):</b>
+	            <span class="fahrenheit">
+	              {{current_forcast['temp']['fahrenheit']}}°F,
+	            </span>
+	            <span class="celsius">
+	              {{current_forcast['temp']['celsius']}}°C,
+	            </span>
+	            <span class="fahrenheit">
+	              {{current_forcast['feels_like']['fahrenheit']}}°F</span
+	            >
+	            <span class="celsius">
+	              {{current_forcast['feels_like']['celsius']}}°C</span
+	            >
+	            <br />
 
-          <p class="CurrentDataItemsText">
-            <b class="CurStats">Weather as of:</b> {{current_forcast['dt']}}
-            <br />
-            <b class="CurStats">Description:</b>
-            {{current_forcast['weather'][0]['description']}} <br />
-            <b class="CurStats">Sunrise:</b>
-            {{current_forcast['sunrise']}}<br /><b class="CurStats">Sunset:</b>
-            {{current_forcast['sunset']}} <br />
-            <b class="CurStats">Clouds:</b> {{current_forcast['clouds']}}%,
-            <b class="CurStats">Dew Point:</b>
-            <span class="fahrenheit">
-              {{current_forcast['dew_point']['fahrenheit']}}°F
-            </span>
-            <span class="celsius">
-              {{current_forcast['dew_point']['celsius']}}°C
-            </span>
-            <br />
-            <b class="CurStats">Humidity:</b> {{current_forcast['humidity']}}%,
-            <b class="CurStats">Pressure:</b> {{current_forcast['pressure']}}
-            hPa <br /><br />
-            <b class="CurStats">Temperature (Feels Like):</b>
-            <span class="fahrenheit">
-              {{current_forcast['temp']['fahrenheit']}}°F,
-            </span>
-            <span class="celsius">
-              {{current_forcast['temp']['celsius']}}°C,
-            </span>
-            <span class="fahrenheit">
-              {{current_forcast['feels_like']['fahrenheit']}}°F</span
-            >
-            <span class="celsius">
-              {{current_forcast['feels_like']['celsius']}}°C</span
-            >
-            <br />
+	            <b class="CurStats">UVI:</b> {{current_forcast['uvi']}}
+	            <b class="CurStats">Wind Speed:</b>
+	            {{current_forcast['wind_speed']}} meters/sec <br />
+	          </p>
+	        </li>
+	      </ul>
+	    </div>
+	    <!-- End of Current Weather Box -->
 
-            <b class="CurStats">UVI:</b> {{current_forcast['uvi']}}
-            <b class="CurStats">Wind Speed:</b>
-            {{current_forcast['wind_speed']}} meters/sec <br />
-          </p>
-        </li>
-      </ul>
-    </div>
-    <!-- End of Current Weather Box -->
+	    <!-- Start of Daily Weather Box-->
+	    <!-- Current Weather/ Daily Forcast Titles... class = WeatherTitles   /for css-->
+	    <div class="DailyWeatherBox tabcontent" id="dailyWeather">
+	      <h2 class="WeatherTitles"><i>Daily Forecast</i></h2>
 
-    <!-- Start of Daily Weather Box-->
-    <!-- Current Weather/ Daily Forcast Titles... class = WeatherTitles   /for css-->
-    <div class="DailyWeatherBox tabcontent" id="dailyWeather">
-      <h2 class="WeatherTitles"><i>Daily Forecast</i></h2>
+	      <ul class="DailyDataBox">
+	        {% for day in daily_forcast %}
+	        <li class="DailyDataItems">
+	          <div>
+	            <img src="{{day['weather'][0]['icon']}}" />
+	          </div>
 
-      <ul class="DailyDataBox">
-        {% for day in daily_forcast %}
-        <li class="DailyDataItems">
-          <div>
-            <img src="{{day['weather'][0]['icon']}}" />
-          </div>
+	          <p class="DailyDataItemsText">
+	            <b class="Stats">Weather for:</b> {{day['dt']}} <br />
+	            <b class="Stats">Description:</b>
+	            {{day['weather'][0]['description']}} <br />
+	            <b class="Stats">Humidity:</b> {{day['humidity']}}%<br />
+	            <b class="Stats">Wind Speed:</b> {{day['wind_speed']}} meters/sec
+	            <br /><br />
+	            <b class="Stats"><i>Temperature: (Feels Like)</i></b> <br />
+	            <b class="Stats">Max:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['max']['fahrenheit']}}°F</span
+	            >
+	            <span class="celsius"> {{day['temp']['max']['celsius']}}°C</span>
+	            <br />
+	            <b class="Stats">Min:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['min']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius"> {{day['temp']['min']['celsius']}}°C </span>
+	            <br />
+	            <b class="Stats">Morning:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['morn']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius"> {{day['temp']['morn']['celsius']}}°C </span>
+	            <span class="fahrenheit"
+	              >({{day['feels_like']['morn']['fahrenheit']}}°F)</span
+	            >
+	            <span class="celsius"
+	              >({{day['feels_like']['morn']['celsius']}}°C)</span
+	            >
+	            <br />
+	            <b class="Stats">Day:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['day']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius"> {{day['temp']['day']['celsius']}}°C </span>
+	            <span class="fahrenheit"
+	              >({{day['feels_like']['day']['fahrenheit']}}°F)</span
+	            >
+	            <span class="celsius"
+	              >({{day['feels_like']['day']['celsius']}}°C)</span
+	            >
+	            <br />
+	            <b class="Stats">Evening:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['eve']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius"> {{day['temp']['eve']['celsius']}}°C </span>
+	            <span class="fahrenheit"
+	              >({{day['feels_like']['eve']['fahrenheit']}}°F)</span
+	            >
+	            <span class="celsius"
+	              >({{day['feels_like']['eve']['celsius']}}°C)</span
+	            >
+	            <br />
+	            <b class="Stats">Night:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['night']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius"> {{day['temp']['night']['celsius']}}°C </span>
+	            <span class="fahrenheit">
+	              ({{day['feels_like']['night']['fahrenheit']}}°F)</span
+	            >
+	            <span class="celsius">
+	              ({{day['feels_like']['night']['celsius']}}°C)</span
+	            >
+	            <br />
+	          </p>
+	        </li>
+	        {% endfor %}
+	      </ul>
+	    </div>
+	    <!-- End of Daily Weather Box -->
 
-          <p class="DailyDataItemsText">
-            <b class="Stats">Weather for:</b> {{day['dt']}} <br />
-            <b class="Stats">Description:</b>
-            {{day['weather'][0]['description']}} <br />
-            <b class="Stats">Humidity:</b> {{day['humidity']}}%<br />
-            <b class="Stats">Wind Speed:</b> {{day['wind_speed']}} meters/sec
-            <br /><br />
-            <b class="Stats"><i>Temperature: (Feels Like)</i></b> <br />
-            <b class="Stats">Max:</b>
-            <span class="fahrenheit">
-              {{day['temp']['max']['fahrenheit']}}°F</span
-            >
-            <span class="celsius"> {{day['temp']['max']['celsius']}}°C</span>
-            <br />
-            <b class="Stats">Min:</b>
-            <span class="fahrenheit">
-              {{day['temp']['min']['fahrenheit']}}°F
-            </span>
-            <span class="celsius"> {{day['temp']['min']['celsius']}}°C </span>
-            <br />
-            <b class="Stats">Morning:</b>
-            <span class="fahrenheit">
-              {{day['temp']['morn']['fahrenheit']}}°F
-            </span>
-            <span class="celsius"> {{day['temp']['morn']['celsius']}}°C </span>
-            <span class="fahrenheit"
-              >({{day['feels_like']['morn']['fahrenheit']}}°F)</span
-            >
-            <span class="celsius"
-              >({{day['feels_like']['morn']['celsius']}}°C)</span
-            >
-            <br />
-            <b class="Stats">Day:</b>
-            <span class="fahrenheit">
-              {{day['temp']['day']['fahrenheit']}}°F
-            </span>
-            <span class="celsius"> {{day['temp']['day']['celsius']}}°C </span>
-            <span class="fahrenheit"
-              >({{day['feels_like']['day']['fahrenheit']}}°F)</span
-            >
-            <span class="celsius"
-              >({{day['feels_like']['day']['celsius']}}°C)</span
-            >
-            <br />
-            <b class="Stats">Evening:</b>
-            <span class="fahrenheit">
-              {{day['temp']['eve']['fahrenheit']}}°F
-            </span>
-            <span class="celsius"> {{day['temp']['eve']['celsius']}}°C </span>
-            <span class="fahrenheit"
-              >({{day['feels_like']['eve']['fahrenheit']}}°F)</span
-            >
-            <span class="celsius"
-              >({{day['feels_like']['eve']['celsius']}}°C)</span
-            >
-            <br />
-            <b class="Stats">Night:</b>
-            <span class="fahrenheit">
-              {{day['temp']['night']['fahrenheit']}}°F
-            </span>
-            <span class="celsius"> {{day['temp']['night']['celsius']}}°C </span>
-            <span class="fahrenheit">
-              ({{day['feels_like']['night']['fahrenheit']}}°F)</span
-            >
-            <span class="celsius">
-              ({{day['feels_like']['night']['celsius']}}°C)</span
-            >
-            <br />
-          </p>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-    <!-- End of Daily Weather Box -->
+	     <!-- Start of Hourly Weather Box-->
+	    <div class="HourlyWeatherBox tabcontent" id="hourlyWeather">
+	      <h2 class="WeatherTitles"><i>Hourly Forecast</i></h2>
 
-     <!-- Start of Hourly Weather Box-->
-    <div class="HourlyWeatherBox tabcontent" id="hourlyWeather">
-      <h2 class="WeatherTitles"><i>Hourly Forecast</i></h2>
+	      <ul class="DailyDataBox">
+	        {% for hour in hourly_forcast %}
+	        <li class="DailyDataItems">
+	          <div>
+	            <img src="{{hour['weather'][0]['icon']}}" />
+	          </div>
 
-      <ul class="DailyDataBox">
-        {% for hour in hourly_forcast %}
-        <li class="DailyDataItems">
-          <div>
-            <img src="{{hour['weather'][0]['icon']}}" />
-          </div>
+	          <p class="DailyDataItemsText">
+	            <b class="Stats">Weather for:</b> {{hour['dt']}} <br />
+	            <b class="Stats">Description:</b> {{hour['weather'][0]['description']}} <br />
+	            <b class="Stats">Humidity:</b> {{hour['humidity']}}%<br />
+	            <b class="Stats">Wind Speed:</b> {{hour['wind_speed']}} meters/sec
+	            <br /><br />
+	            <b class="Stats"><i>Temperature: (Feels Like)</i></b> <br />
+		            <span class="fahrenheit"> {{ hour['temp']['fahrenheit'] }}°F </span>
+		            <span class="celsius"> {{ hour['temp']['celsius']}}°C </span>
+		            <span class="fahrenheit">({{ hour['feels_like']['fahrenheit'] }}°F)</span>
+		            <span class="celsius">({{ hour['feels_like']['celsius']}}°C)</span> <br />
+	            <b class="Stats">Dew Point:</b>
+	            	<span class="fahrenheit"> {{hour['dew_point']['fahrenheit']}}°F</span>
+		            <span class="celsius"> {{hour['dew_point']['celsius']}}°C</span> <br />
+	          </p>
+	        </li>
+	        {% endfor %}
+	      </ul>
+	    </div>
 
-          <p class="DailyDataItemsText">
-            <b class="Stats">Weather for:</b> {{hour['dt']}} <br />
-            <b class="Stats">Description:</b> {{hour['weather'][0]['description']}} <br />
-            <b class="Stats">Humidity:</b> {{hour['humidity']}}%<br />
-            <b class="Stats">Wind Speed:</b> {{hour['wind_speed']}} meters/sec
-            <br /><br />
-            <b class="Stats"><i>Temperature: (Feels Like)</i></b> <br />
-	            <span class="fahrenheit"> {{ hour['temp']['fahrenheit'] }}°F </span>
-	            <span class="celsius"> {{ hour['temp']['celsius']}}°C </span>
-	            <span class="fahrenheit">({{ hour['feels_like']['fahrenheit'] }}°F)</span>
-	            <span class="celsius">({{ hour['feels_like']['celsius']}}°C)</span> <br />
-            <b class="Stats">Dew Point:</b>
-            	<span class="fahrenheit"> {{hour['dew_point']['fahrenheit']}}°F</span>
-	            <span class="celsius"> {{hour['dew_point']['celsius']}}°C</span> <br />
-          </p>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
+	    <!--Modal: Shows city on map-->
+	    <div
+	      class="modal fade"
+	      id="modalYT"
+	      tabindex="-1"
+	      role="dialog"
+	      aria-labelledby="myModalLabel"
+	      aria-hidden="true"
+	    >
+	      <div class="modal-dialog modal-lg" role="document">
+	        <div class="modal-content">
+	          <div class="modal-body mb-0 p-0">
+	            <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+	              <iframe
+	                id="map"
+	                src=""
+	                frameborder="0"
+	                scrolling="no"
+	                marginheight="0"
+	                marginwidth="0"
+	                allowfullscreen
+	              ></iframe>
+	            </div>
+	          </div>
 
-    <!--Modal: Shows city on map-->
-    <div
-      class="modal fade"
-      id="modalYT"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-body mb-0 p-0">
-            <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-              <iframe
-                id="map"
-                src=""
-                frameborder="0"
-                scrolling="no"
-                marginheight="0"
-                marginwidth="0"
-                allowfullscreen
-              ></iframe>
-            </div>
-          </div>
-
-          <div class="modal-footer justify-content-center">
-            <button
-              type="button"
-              class="btn btn-outline-primary btn-rounded btn-md ml-4"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+	          <div class="modal-footer justify-content-center">
+	            <button
+	              type="button"
+	              class="btn btn-outline-primary btn-rounded btn-md ml-4"
+	              data-dismiss="modal"
+	            >
+	              Close
+	            </button>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+    {% endif %}
     <!-- CSS style for "An Error Occured"... class = ExternalIPError /for css -->
 
     <!--  IF CANNOT CONNECT , Notify that an error has occured -->
@@ -556,9 +556,11 @@
 
     <!-- CSS style for "ExternalIP is... class = ExternalIP(same as top) /for css" -->
     <!-- Gives your externalIP after Error -->
-    <p class="ExternalIP">
-      Your External IP Address Given: {{location['ip_address']}}
-    </p>
+	    {% if location['ip_address'] %}
+	    <p class="ExternalIP">
+	      Your External IP Address Given: {{location['ip_address']}}
+	    </p>
+	    {% endif %}
     {% endif %}
 
     <!-- Optional JavaScript -->

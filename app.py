@@ -34,13 +34,13 @@ def home():
             lat = location['lat']
             lon = location['lon']
             current_forcast, daily_forcast, hourly_forcast = get_weather(lat, lon)
-   
-
-        return render_template('index.html', 
-                               location = location, 
-                               current_forcast = current_forcast, 
-                               daily_forcast = daily_forcast,
-                               hourly_forcast = hourly_forcast)
+            return render_template('index.html', 
+                                   location = location, 
+                                   current_forcast = current_forcast, 
+                                   daily_forcast = daily_forcast,
+                                   hourly_forcast = hourly_forcast)
+            
+        return render_template('index.html', location = location)
 
 @app.route('/about', methods=['GET'])
 def about():      
