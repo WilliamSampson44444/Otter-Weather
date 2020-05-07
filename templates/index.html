@@ -326,6 +326,13 @@
       >
         Daily
       </button>
+      <button
+        class="tablinks"
+        id="hourWeather"
+        onclick="show_weather(event, 'hourlyWeather')"
+      >
+        Hourly
+      </button>
     </div>
 
     <!-- Start of Current Weather Box -->
@@ -463,6 +470,38 @@
               ({{day['feels_like']['night']['celsius']}}°C)</span
             >
             <br />
+          </p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <!-- End of Daily Weather Box -->
+
+     <!-- Start of Hourly Weather Box-->
+    <div class="HourlyWeatherBox tabcontent" id="hourlyWeather">
+      <h2 class="WeatherTitles"><i>Hourly Forecast</i></h2>
+
+      <ul class="DailyDataBox">
+        {% for hour in hourly_forcast %}
+        <li class="DailyDataItems">
+          <div>
+            <img src="{{hour['weather'][0]['icon']}}" />
+          </div>
+
+          <p class="DailyDataItemsText">
+            <b class="Stats">Weather for:</b> {{hour['dt']}} <br />
+            <b class="Stats">Description:</b> {{hour['weather'][0]['description']}} <br />
+            <b class="Stats">Humidity:</b> {{hour['humidity']}}%<br />
+            <b class="Stats">Wind Speed:</b> {{hour['wind_speed']}} meters/sec
+            <br /><br />
+            <b class="Stats"><i>Temperature: (Feels Like)</i></b> <br />
+	            <span class="fahrenheit"> {{ hour['temp']['fahrenheit'] }}°F </span>
+	            <span class="celsius"> {{ hour['temp']['celsius']}}°C </span>
+	            <span class="fahrenheit"> {{hour['feels_like']['fahrenheit']}}°F</span>
+	            <span class="celsius"> {{hour['feels_like']['celsius']}}°C</span> <br />
+            <b class="Stats">Morning:</b>
+            	<span class="fahrenheit"> {{hour['dew_point']['fahrenheit']}}°F</span>
+	            <span class="celsius"> {{hour['dew_point']['celsius']}}°C</span> <br />
           </p>
         </li>
         {% endfor %}

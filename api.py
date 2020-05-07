@@ -176,8 +176,44 @@ def get_weather(lat, lon):
 
         for temp in day['temp']:
             day['temp'][temp] = {'kelvin': day['temp'][temp], 
-                                       'fahrenheit': round(kelvin_to_fahrenheit(day['temp'][temp]), 2),
-                                       'celsius': round(kelvin_to_celsius(day['temp'][temp]), 2)}
+                                 'fahrenheit': round(kelvin_to_fahrenheit(day['temp'][temp]), 2),
+                                 'celsius': round(kelvin_to_celsius(day['temp'][temp]), 2)}
+
+    # Interpret Hourly Weather
+    hourly_weather = weather['hourly']
+
+    # Only manipulating data for hours of the current date, rest will be ommitted
+
+    curr_date = epoch_to_human_readable_date(hourly_weather[0]['dt']).split(",", 1)[1][:3]
+
+    last_hour = 0
+
+    for index, hour in enumerate(hourly_weather):
+        # Get date in relation to the hour
+        date = epoch_to_human_readable_date(hour['dt']).split(",", 1)[1][:3]
+        if date != curr_date:
+            last_hour = index
+            break
+            
+        # Convert temperatures in 'dew_point' dictionary from Kelvin to Fahrenheit and Celsius
+        hour['dew_point'] = {'Kelvin':hour['dew_point'],
+                             'fahrenheit': round(kelvin_to_fahrenheit(hour['dew_point']), 2),
+                             'celsius': round(kelvin_to_celsius(hour['dew_point']), 2)}
+
+        # Get readable dates and times
+        hour['dt'] = epoch_to_human_readable_date(hour['dt'])
+
+        # Convert temperatures in 'feels_like' dictionary from Kelvin to Fahrenheit and Celsius
+        hour['feels_like'] = {'kelvin': hour['feels_like'], 
+                              'fahrenheit': round(kelvin_to_fahrenheit(hour['feels_like']), 2),
+                              'celsius': round(kelvin_to_celsius(hour['feels_like']), 2)}
+
+        # Convert temperatures in 'temp' dictionary from Kelvin to Fahrenheit
+        hour['temp'] = {'kelvin': hour['temp'], 
+                        'fahrenheit': round(kelvin_to_fahrenheit(hour['temp']), 2),
+                        'celsius': round(kelvin_to_celsius(hour['temp']), 2)}
+
+        hour['weather'][0]['icon'] = 'http://openweathermap.org/img/wn/' + hour['weather'][0]['icon'] + '@2x.png'
 
 
-    return current_weather, daily_forcast
+    return current_weather, daily_forcast, hourly_weather[:last_hour]
