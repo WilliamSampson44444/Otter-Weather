@@ -497,9 +497,9 @@
             <b class="Stats"><i>Temperature: (Feels Like)</i></b> <br />
 	            <span class="fahrenheit"> {{ hour['temp']['fahrenheit'] }}°F </span>
 	            <span class="celsius"> {{ hour['temp']['celsius']}}°C </span>
-	            <span class="fahrenheit"> {{hour['feels_like']['fahrenheit']}}°F</span>
-	            <span class="celsius"> {{hour['feels_like']['celsius']}}°C</span> <br />
-            <b class="Stats">Morning:</b>
+	            <span class="fahrenheit">({{ hour['feels_like']['fahrenheit'] }}°F)</span>
+	            <span class="celsius">({{ hour['feels_like']['celsius']}}°C)</span> <br />
+            <b class="Stats">Dew Point:</b>
             	<span class="fahrenheit"> {{hour['dew_point']['fahrenheit']}}°F</span>
 	            <span class="celsius"> {{hour['dew_point']['celsius']}}°C</span> <br />
           </p>
