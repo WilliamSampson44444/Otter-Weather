@@ -39,9 +39,10 @@
 
 
     .AboutText{
-        color:red;
+        color: black;
         vertical-align: middle;
         padding-left: 10%;
+        font-size: 24px;
     
     }
 
