@@ -266,11 +266,6 @@
     {% block content %}
 
     <!-- First title at the top of page... class = Title1  /for css-->
-    <style> 
-    div {
-      background-image: url('road.jpg');
-    }
-    </style>
     <div class="TopBody">
       <h1 class="Title1">Otter Weather</h1>
 
@@ -293,7 +288,11 @@
         </button>
       </form>
       <!-- End of search bar-->
-
+      <style> 
+        div {
+          background-image: url('road.jpg');
+        }
+        </style>
       <!-- Start of weather for-->
       <!-- weather for ... class = WeatherLocation /for css-->
       {% if location['success'] %}

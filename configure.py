@@ -8,7 +8,7 @@
 
 """
 
-WEATHER_KEY = '' 
+WEATHER_KEY = ''
 
 """
 	API: Zipcode API
