@@ -1,0 +1,705 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Links to css and styles-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="static/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- Title on top of tab-->
+    <title>Otter Weather</title>
+    <link
+      rel="title icon"
+      type="image/png"
+      href="{{ url_for('static', filename='Images/cloud.ico') }}"
+    />
+
+    <style type="text/css">
+      .github-corner:hover .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+      }
+
+      @keyframes octocat-wave {
+        0%,
+        100% {
+          transform: rotate(0);
+        }
+        20%,
+        60% {
+          transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+          transform: rotate(10deg);
+        }
+      }
+
+      @media (max-width: 500px) {
+        .github-corner:hover .octo-arm {
+          animation: none;
+        }
+        .github-corner .octo-arm {
+          animation: octocat-wave 560ms ease-in-out;
+        }
+      }
+
+      .onoffswitch {
+        z-index: 99;
+        position: relative;
+        width: 90px;
+        margin-left: 10px;
+        top: 10px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+      .onoffswitch-checkbox {
+        display: none;
+      }
+      .onoffswitch-label {
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid #999999;
+        border-radius: 20px;
+      }
+      .onoffswitch-inner {
+        display: block;
+        width: 200%;
+        margin-left: -100%;
+        transition: margin 0.3s ease-in 0s;
+      }
+      .onoffswitch-inner:before,
+      .onoffswitch-inner:after {
+        display: block;
+        float: left;
+        width: 50%;
+        height: 30px;
+        padding: 0;
+        line-height: 30px;
+        font-size: 14px;
+        color: white;
+        font-family: Trebuchet, Arial, sans-serif;
+        font-weight: bold;
+        box-sizing: border-box;
+      }
+      .onoffswitch-inner:before {
+        content: "°F";
+        padding-left: 10px;
+        background-color: #34a7c1;
+        color: #ffffff;
+      }
+      .onoffswitch-inner:after {
+        content: "°C";
+        padding-right: 10px;
+        background-color: #eeeeee;
+        color: #999999;
+        text-align: right;
+      }
+      .onoffswitch-switch {
+        display: block;
+        width: 18px;
+        margin: 6px;
+        background: #ffffff;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 56px;
+        border: 2px solid #999999;
+        border-radius: 20px;
+        transition: all 0.3s ease-in 0s;
+      }
+      .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+        margin-left: 0;
+      }
+      .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+        right: 0px;
+      }
+
+      .sticky {
+        position: -webkit-sticky;
+        position: sticky;
+      }
+
+      #myBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background: #2196f3;
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 4px;
+      }
+
+      #myBtn:hover {
+        background: #0b7dda;
+      }
+
+      #submit {
+        height: 30px;
+        background: #2196f3;
+        color: white;
+        border: 1px solid grey;
+        cursor: pointer;
+      }
+
+      #submit:hover {
+        background: #0b7dda;
+      }
+
+      /* Style the tab */
+      .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #e6e6dc; /*#f1f1f1*/
+      }
+
+      /* Style the buttons inside the tab */
+      .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+      }
+
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #ddd;
+      }
+
+      /* Create an active/current tablink class */
+      .tab button.active {
+        background-color: #ccc;
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+    </style>
+  </head>
+  <!-- End of style plug ins-->
+
+  <!------------------------------------ Start of TOP side ------------------------------------------------------------------->
+
+  <body class="TotalBody">
+    <a
+      href="https://github.com/WilliamSampson44444/cst205_weather_project"
+      target="_blank"
+      class="github-corner"
+      aria-label="View source on GitHub"
+    >
+      <svg
+        width="80"
+        height="80"
+        viewBox="0 0 250 250"
+        style="
+          fill: #151513;
+          color: #fff;
+          position: absolute;
+          top: 0;
+          border: 0;
+          right: 0;
+        "
+        aria-hidden="true"
+      >
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path
+          d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+          fill="currentColor"
+          style="transform-origin: 130px 106px;"
+          class="octo-arm"
+        ></path>
+        <path
+          d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+          fill="currentColor"
+          class="octo-body"
+        ></path>
+      </svg>
+    </a>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+      <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+    </button>
+
+    <div class="onoffswitch sticky">
+      <input
+        type="checkbox"
+        name="onoffswitch"
+        class="onoffswitch-checkbox"
+        id="myonoffswitch"
+        checked
+      />
+      <label class="onoffswitch-label" for="myonoffswitch">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+      </label>
+    </div>
+    {% block content %}
+
+    <!-- First title at the top of page... class = Title1  /for css-->
+    <div class="TopBody">
+      <h1 class="Title1">Otter Weather</h1>
+
+      <!-- Start of search bar-->
+      <form action="/" method="post" class="text-center justify-content-center">
+        <!-- Get weather for text before search bar...-->
+        <label for="zip_code">Get Weather For:</label>
+        <!-- Open box to input zipcode data-->
+        <input
+          type="number"
+          name="zip_code"
+          placeholder="Enter Zip Code"
+          id="zip_code"
+          autocomplete="off"
+          required
+        />
+        <!-- Search button-->
+        <button type="submit" id="submit">
+          Search <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </form>
+      <!-- End of search bar-->
+      <style> 
+        div {
+          background-image: ('static/Images/road.jpg');
+        }
+        </style>
+      <!-- Start of weather for-->
+      <!-- weather for ... class = WeatherLocation /for css-->
+      {% if location['success'] %}
+      <h2 class="WeatherLocation">
+        Weather for {{location['city']}}, {{location['state']}}
+        <a href="#" data-toggle="modal" data-target="#modalYT"
+          ><i
+            class="fa fa-globe"
+            aria-hidden="true"
+            onclick="show_map('{{location['city']}}')"
+          ></i
+        ></a>
+      </h2>
+      {% endif %}
+      <!-- End of weather for-->
+    </div>
+    <br /><br />
+
+    <!--------------------------------------- End of TOP side------------------------------------------------------------------->
+
+    <!---------------------------------------- Start of middle Body --------------------------------------------------------->
+    {% if location['success'] %}
+	    <div class="tab">
+	      <button
+	        class="tablinks"
+	        id="currWeather"
+	        onclick="show_weather(event, 'currentWeather')"
+	      >
+	        Current
+	      </button>
+	      <button
+	        class="tablinks"
+	        id="dailWeather"
+	        onclick="show_weather(event, 'dailyWeather')"
+	      >
+	        Daily
+	      </button>
+	      <button
+	        class="tablinks"
+	        id="hourWeather"
+	        onclick="show_weather(event, 'hourlyWeather')"
+	      >
+	        Hourly
+	      </button>
+	    </div>
+
+	    <!-- Start of Current Weather Box -->
+	    <!-- Current Weather/ Daily Forcast Titles... class = WeatherTitles   /for css-->
+	    <div class="CurrentWeatherBody tabcontent" id="currentWeather">
+	      <h2 class="WeatherTitles"><i>Current Weather</i></h2>
+
+	      <ul class="CurrentDataBox">
+	        <li class="CurrentDataItems">
+	          <div>
+	            <img src="{{current_forcast['weather'][0]['icon']}}" />
+	          </div>
+
+	          <p class="CurrentDataItemsText">
+	            <b class="CurStats">Weather as of:</b> {{current_forcast['dt']}}
+	            <br />
+	            <b class="CurStats">Description:</b>
+	            {{current_forcast['weather'][0]['description']}} <br />
+	            <b class="CurStats">Sunrise:</b>
+	            {{current_forcast['sunrise']}}<br /><b class="CurStats">Sunset:</b>
+	            {{current_forcast['sunset']}} <br />
+	            <b class="CurStats">Clouds:</b> {{current_forcast['clouds']}}%,
+	            <b class="CurStats">Dew Point:</b>
+	            <span class="fahrenheit">
+	              {{current_forcast['dew_point']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius">
+	              {{current_forcast['dew_point']['celsius']}}°C
+	            </span>
+	            <br />
+	            <b class="CurStats">Humidity:</b> {{current_forcast['humidity']}}%,
+	            <b class="CurStats">Pressure:</b> {{current_forcast['pressure']}}
+	            hPa <br /><br />
+	            <b class="CurStats">Temperature (Feels Like):</b>
+	            <span class="fahrenheit">
+	              {{current_forcast['temp']['fahrenheit']}}°F,
+	            </span>
+	            <span class="celsius">
+	              {{current_forcast['temp']['celsius']}}°C,
+	            </span>
+	            <span class="fahrenheit">
+	              {{current_forcast['feels_like']['fahrenheit']}}°F</span
+	            >
+	            <span class="celsius">
+	              {{current_forcast['feels_like']['celsius']}}°C</span
+	            >
+	            <br />
+
+	            <b class="CurStats">UVI:</b> {{current_forcast['uvi']}}
+	            <b class="CurStats">Wind Speed:</b>
+	            {{current_forcast['wind_speed']}} meters/sec <br />
+	          </p>
+	        </li>
+	      </ul>
+	    </div>
+      <!-- End of Current Weather Box -->
+      <style>
+        body{
+          background-image: url('static/Images/road.jpg');
+          background-position: center;
+        }
+      </style>
+	    <!-- Start of Daily Weather Box-->
+	    <!-- Current Weather/ Daily Forcast Titles... class = WeatherTitles   /for css-->
+	    <div class="DailyWeatherBox tabcontent" id="dailyWeather">
+	      <h2 class="WeatherTitles"><i>Daily Forecast</i></h2>
+
+	      <ul class="DailyDataBox">
+	        {% for day in daily_forcast %}
+	        <li class="DailyDataItems">
+	          <div>
+	            <img src="{{day['weather'][0]['icon']}}" />
+	          </div>
+
+	          <p class="DailyDataItemsText">
+	            <b class="Stats">Weather for:</b> {{day['dt']}} <br />
+	            <b class="Stats">Description:</b>
+	            {{day['weather'][0]['description']}} <br />
+	            <b class="Stats">Humidity:</b> {{day['humidity']}}%<br />
+	            <b class="Stats">Wind Speed:</b> {{day['wind_speed']}} meters/sec
+	            <br /><br />
+	            <b class="Stats"><i>Temperature: (Feels Like)</i></b> <br />
+	            <b class="Stats">Max:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['max']['fahrenheit']}}°F</span
+	            >
+	            <span class="celsius"> {{day['temp']['max']['celsius']}}°C</span>
+	            <br />
+	            <b class="Stats">Min:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['min']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius"> {{day['temp']['min']['celsius']}}°C </span>
+	            <br />
+	            <b class="Stats">Morning:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['morn']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius"> {{day['temp']['morn']['celsius']}}°C </span>
+	            <span class="fahrenheit"
+	              >({{day['feels_like']['morn']['fahrenheit']}}°F)</span
+	            >
+	            <span class="celsius"
+	              >({{day['feels_like']['morn']['celsius']}}°C)</span
+	            >
+	            <br />
+	            <b class="Stats">Day:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['day']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius"> {{day['temp']['day']['celsius']}}°C </span>
+	            <span class="fahrenheit"
+	              >({{day['feels_like']['day']['fahrenheit']}}°F)</span
+	            >
+	            <span class="celsius"
+	              >({{day['feels_like']['day']['celsius']}}°C)</span
+	            >
+	            <br />
+	            <b class="Stats">Evening:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['eve']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius"> {{day['temp']['eve']['celsius']}}°C </span>
+	            <span class="fahrenheit"
+	              >({{day['feels_like']['eve']['fahrenheit']}}°F)</span
+	            >
+	            <span class="celsius"
+	              >({{day['feels_like']['eve']['celsius']}}°C)</span
+	            >
+	            <br />
+	            <b class="Stats">Night:</b>
+	            <span class="fahrenheit">
+	              {{day['temp']['night']['fahrenheit']}}°F
+	            </span>
+	            <span class="celsius"> {{day['temp']['night']['celsius']}}°C </span>
+	            <span class="fahrenheit">
+	              ({{day['feels_like']['night']['fahrenheit']}}°F)</span
+	            >
+	            <span class="celsius">
+	              ({{day['feels_like']['night']['celsius']}}°C)</span
+	            >
+	            <br />
+	          </p>
+	        </li>
+	        {% endfor %}
+	      </ul>
+	    </div>
+	    <!-- End of Daily Weather Box -->
+
+	     <!-- Start of Hourly Weather Box-->
+	    <div class="HourlyWeatherBox tabcontent" id="hourlyWeather">
+	      <h2 class="WeatherTitles"><i>Hourly Forecast</i></h2>
+
+	      <ul class="DailyDataBox">
+	        {% for hour in hourly_forcast %}
+	        <li class="DailyDataItems">
+	          <div>
+	            <img src="{{hour['weather'][0]['icon']}}" />
+	          </div>
+
+	          <p class="DailyDataItemsText">
+	            <b class="Stats">Weather for:</b> {{hour['dt']}} <br />
+	            <b class="Stats">Description:</b> {{hour['weather'][0]['description']}} <br />
+	            <b class="Stats">Humidity:</b> {{hour['humidity']}}%<br />
+	            <b class="Stats">Wind Speed:</b> {{hour['wind_speed']}} meters/sec
+	            <br /><br />
+	            <b class="Stats"><i>Temperature: (Feels Like)</i></b> <br />
+		            <span class="fahrenheit"> {{ hour['temp']['fahrenheit'] }}°F </span>
+		            <span class="celsius"> {{ hour['temp']['celsius']}}°C </span>
+		            <span class="fahrenheit">({{ hour['feels_like']['fahrenheit'] }}°F)</span>
+		            <span class="celsius">({{ hour['feels_like']['celsius']}}°C)</span> <br />
+	            <b class="Stats">Dew Point:</b>
+	            	<span class="fahrenheit"> {{hour['dew_point']['fahrenheit']}}°F</span>
+		            <span class="celsius"> {{hour['dew_point']['celsius']}}°C</span> <br />
+	          </p>
+	        </li>
+	        {% endfor %}
+	      </ul>
+	    </div>
+
+	    <!--Modal: Shows city on map-->
+	    <div
+	      class="modal fade"
+	      id="modalYT"
+	      tabindex="-1"
+	      role="dialog"
+	      aria-labelledby="myModalLabel"
+	      aria-hidden="true"
+	    >
+	      <div class="modal-dialog modal-lg" role="document">
+	        <div class="modal-content">
+	          <div class="modal-body mb-0 p-0">
+	            <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+	              <iframe
+	                id="map"
+	                src=""
+	                frameborder="0"
+	                scrolling="no"
+	                marginheight="0"
+	                marginwidth="0"
+	                allowfullscreen
+	              ></iframe>
+	            </div>
+	          </div>
+
+	          <div class="modal-footer justify-content-center">
+	            <button
+	              type="button"
+	              class="btn btn-outline-primary btn-rounded btn-md ml-4"
+	              data-dismiss="modal"
+	            >
+	              Close
+	            </button>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+    {% endif %}
+    <!-- CSS style for "An Error Occured"... class = ExternalIPError /for css -->
+
+    <!--  IF CANNOT CONNECT , Notify that an error has occured -->
+    {% if not location['success'] %}
+    <h2 class="ExternalIPError">
+      An Error Occured
+    </h2>
+
+    <!-- CSS style for "ExternalIP is... class = ExternalIP(same as top) /for css" -->
+    <!-- Gives your externalIP after Error -->
+	    {% if location['ip_address'] %}
+	    <p class="ExternalIP">
+	      Your External IP Address Given: {{location['ip_address']}}
+	    </p>
+	    {% endif %}
+    {% endif %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+
+    {% endblock %}
+    <!-- End of functions for OpenWeatherMapAPI-->
+
+    <script>
+      var degree;
+
+      $(document).ready(function () {
+        $("#zip_code").focus();
+
+        degree = "°F";
+        $(".celsius").hide();
+
+        document.getElementById("currWeather").click();
+      });
+
+      $("#myonoffswitch").on("change", function (e) {
+        degree = degree === "°F" ? "°C" : "°F";
+
+        switch (degree) {
+          case "°C":
+            $(".celsius").show();
+            $(".fahrenheit").hide();
+            break;
+          case "°F":
+            $(".fahrenheit").show();
+            $(".celsius").hide();
+            break;
+        }
+      });
+
+      //Get the button
+      var mybutton = document.getElementById("myBtn");
+
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function () {
+        scrollFunction();
+      };
+
+      function scrollFunction() {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          mybutton.style.display = "block";
+        } else {
+          mybutton.style.display = "none";
+        }
+      }
+
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+
+      function show_map(city) {
+        document.getElementById(
+          "map"
+        ).src = `https://maps.google.com/maps?q=${city}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+      }
+
+      function show_weather(evt, type) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(type).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
+  </body>
+  <!--------------------------------------- End of middle Body ---------------------------------------------------------------------->
+
+  <!-------------------------------------- Start of Footer ----------------------------------------------------------------------->
+  <footer class="FooterBox">
+    <a class="link" href="{{ url_for('about') }}"
+      >About <i class="fa fa-info-circle" aria-hidden="true"></i
+    ></a>
+    <br />
+    <a
+      class="link"
+      href="https://github.com/WilliamSampson44444/cst205_weather_project"
+      target="_blank"
+      aria-label="View source on GitHub"
+      >GitHub <i class="fa fa-github" aria-hidden="true"></i
+    ></a>
+    <p class="DevNames">
+      CST 205 2020© Joseph Villegas, Nayeli De Jesus, William Sampson, Waleed
+      Shaikh, Mark Trantham
+    </p>
+    <img
+      src="{{ url_for('static',filename='Images/CSUMB-Logo.png') }}"
+      width="100px"
+      height="100px"
+    />
+  </footer>
+</html>
+<!-- -----------------------------------End of Footer ----------------------------------------------------------------------->

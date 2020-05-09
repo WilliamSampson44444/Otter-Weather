@@ -1,0 +1,137 @@
+    .TotalBody{
+        box-sizing: content-box;
+        background-color: #00628B;
+    }
+
+
+    .TopBody{
+        box-sizing: content-box;
+        background-color: #E6E6DC;
+        border-radius:  20px;
+        border-style:solid;
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        padding-top: 2px;
+        padding-bottom: 2px;
+
+    }
+
+
+    .TitleAboutPage{
+        text-align: center;
+        font-size: 48px;
+    }
+
+
+    .BoxTitles{
+        text-align: center;
+        margin-top: 1%;
+    }
+
+    .Images{
+        width: 200px;
+        height: 200px;
+        margin-left: 2%;
+        margin-top: -2%;
+    }
+
+
+    .AboutText{
+        color: black;
+        vertical-align: middle;
+        padding-left: 10%;
+        font-size: 24px;
+    
+    }
+
+    .JosephBox{
+        box-sizing: content-box;
+        border-style: solid;
+        border-radius: 20px;
+        background-color: #E6E6DC; 
+        margin-left: 7.5%;
+        margin-right: 7.5%;  
+        margin-bottom: .5%;  
+        padding-bottom: 2%;
+    }
+
+
+    .NayeliBox{
+        border-style: solid;
+        border-radius: 20px;
+        background-color: #E6E6DC; 
+        margin-left: 7.5%;
+        margin-right: 7.5%;  
+        margin-bottom: .5%;  
+        padding-bottom: 2%;     
+    }
+
+
+    .Williambox{
+        border-style: solid;
+        border-radius: 20px;
+        background-color: #E6E6DC; 
+        margin-left: 7.5%;
+        margin-right: 7.5%;    
+        margin-bottom: .5%;
+        padding-bottom: 2%;     
+    }
+
+
+    .WaleedBox{
+        border-style: solid;
+        border-radius: 20px;
+        background-color: #E6E6DC; 
+        margin-left: 7.5%;
+        margin-right: 7.5%;  
+        margin-bottom: .5%;
+        padding-bottom: 2%;  
+    }
+
+
+    .MarkBox{
+        border-style: solid;
+        border-radius: 20px;
+        background-color: #E6E6DC; 
+        margin-left: 7.5%;
+        margin-right: 7.5%; 
+        margin-bottom: 2.5%;
+        padding-bottom: 2%;  
+    }
+
+
+
+
+    .FooterBox{
+    list-style-type: none;
+    border-style: solid;
+    background: #ADB6B5;
+    text-align: center;
+    
+    
+    /* Rounded Borders */
+    border-radius: 5px;
+    border: 2px solid black;
+    border-left: 1px;
+    border-right: 1px;
+    margin-bottom:auto;
+    padding-top: 2%;
+    margin-top: 5px;
+    }
+
+
+body {
+  position: relative;
+  min-height: 100%;
+  min-height: 100vh;
+}
+/*
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+*/
