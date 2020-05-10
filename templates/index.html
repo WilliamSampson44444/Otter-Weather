@@ -311,9 +311,11 @@
     
         if(waketime < nowdate  && nowdate < bedtime){
              $('#day').show();
+             document.body.style.background = "url('static/Images/road.jpg')";
              $('#night').hide();
         }else{
              $('#night').show();
+             document.body.style.background = "url('static/Images/road2.jpg')";
              $('#day').hide();
         }
     }
@@ -422,12 +424,14 @@
 	      </ul>
 	    </div>
       <!-- End of Current Weather Box -->
-      <style>
+
+      <!-- <style>
         body{
           background-image: url('static/Images/road2.jpg');
           background-position: center;
         }
-      </style>
+      </style> -->
+
 	    <!-- Start of Daily Weather Box-->
 	    <!-- Current Weather/ Daily Forcast Titles... class = WeatherTitles   /for css-->
 	    <div class="DailyWeatherBox tabcontent" id="dailyWeather">
