@@ -29,8 +29,7 @@ def background_filter(weather_type):
         image = cv2.applyColorMap(image, cv2.COLORMAP_WINTER)
     elif("fog" in weather_type):
         image = cv2.applyColorMap(image, cv2.COLORMAP_BONE)
-    else:
-        image = cv2.applyColorMap(image, cv2.COLORMAP_OCEAN)
+
     status = cv2.imwrite('static/Images/road2.jpg', image)
 
 
