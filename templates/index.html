@@ -288,11 +288,40 @@
         </button>
       </form>
       <!-- End of search bar-->
-      <style> 
-        div {
-          background-image: ('static/Images/road.jpg');
+      <!-- Image -->
+      <script>
+        // credit: https://www.w3schools.com/js/js_whereto.asp
+      $( document ).ready(function() {  
+        SetImage();
+        window.setInterval(SetImage,1000);
+    });
+    
+    function SetImage(){     
+        var nowdate = new Date() ;
+    
+        var waketime = new Date();     
+        waketime.setHours(6);
+        waketime.setMinutes(30);
+    
+        var bedtime = new Date();     
+        bedtime.setHours(18);
+        bedtime.setMinutes(30);
+    
+        if(waketime < nowdate  && nowdate < bedtime){
+             $('#day').show();
+             $('#night').hide();
+        }else{
+             $('#night').show();
+             $('#day').hide();
         }
-        </style>
+    }
+  </script>
+      
+      <img id="night" src="static/Images/road2.jpg">
+      <img id="day" src="static/Images/road2.jpg"> 
+
+      <!-- Image -->
+
       <!-- Start of weather for-->
       <!-- weather for ... class = WeatherLocation /for css-->
       {% if location['success'] %}
