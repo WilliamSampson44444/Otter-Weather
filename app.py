@@ -4,6 +4,7 @@ from api import *
 from flask_bootstrap import Bootstrap
 from flask import Flask, render_template
 from flask import Flask, render_template, request
+import opencv
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'csumb-otter'
@@ -20,7 +21,7 @@ def home():
         lon = location['lon']
 
         current_forcast, daily_forcast, hourly_forcast = get_weather(lat, lon)
-
+        opencv.background_filter(current_forcast['weather'][0]['description'])
         return render_template('index.html', 
                                location = location, 
                                current_forcast = current_forcast, 
@@ -34,6 +35,7 @@ def home():
             lat = location['lat']
             lon = location['lon']
             current_forcast, daily_forcast, hourly_forcast = get_weather(lat, lon)
+            opencv.background_filter(current_forcast['weather'][0]['description'])
             return render_template('index.html', 
                                    location = location, 
                                    current_forcast = current_forcast, 
