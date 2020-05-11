@@ -8,7 +8,7 @@
 
 """
 
-WEATHER_KEY = ''
+WEATHER_KEY = 'bdf446e019e8d47952bd587022923e3a'
 
 """
 	API: Zipcode API
@@ -16,4 +16,4 @@ WEATHER_KEY = ''
 
 """
 
-ZIP_KEY = ''
+ZIP_KEY = 'kwiXDnWPURQU1XOprhofONq7Jo3UbMBRN8dZ0DABQ7ANhW5eP0U8duHEVx4svFEi'
