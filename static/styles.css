@@ -1,4 +1,6 @@
-
+body {
+  background-image: url('/static/Images/road.jpg');
+}
 
 #zip_code{
   
