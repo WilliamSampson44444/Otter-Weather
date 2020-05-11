@@ -1,6 +1,10 @@
 import numpy as np
 import cv2
 from datetime import datetime
+from Tkinter import *
+import tkMessageBox
+import tkFont
+from PIL import ImageTk,Image
 
 def background_filter(weather_type):
     now = datetime.now()
@@ -13,7 +17,7 @@ def background_filter(weather_type):
     elif("fog" in weather_type):
         image = cv2.applyColorMap(image, cv2.COLORMAP_BONE)
 
-    status = cv2.imwrite('static/Images/road2.jpg', image)
+    status = cv2.imwrite('/static/Images/road.jpg', image)
 
 
-#background_filter("asdfasdfasdf")
+# background_filter("clouds")
